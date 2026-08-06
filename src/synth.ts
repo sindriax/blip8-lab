@@ -20,8 +20,9 @@ function phase(freq: Pitch, length: number): Float32Array {
   return out;
 }
 
+// numpy's linspace: the last sample lands on the end value, not one short.
 function ramp(i: number, count: number): number {
-  return i / count;
+  return count > 1 ? i / (count - 1) : 0;
 }
 
 export function square(freq: Pitch, length: number, duty = 0.5, volume = 0.5): Float32Array {
@@ -111,10 +112,18 @@ export function envelope(
 export function crunch(samples: Float32Array, bits = 4): Float32Array {
   const half = 2 ** bits / 2;
   const out = new Float32Array(samples.length);
-  for (let i = 0; i < samples.length; i++) out[i] = Math.round(samples[i] * half) / half;
+  for (let i = 0; i < samples.length; i++) out[i] = roundHalfEven(samples[i] * half) / half;
   return out;
 }
 
+// numpy rounds ties to even; Math.round rounds them up.
+function roundHalfEven(value: number): number {
+  const floor = Math.floor(value);
+  const rest = value - floor;
+  if (rest > 0.5) return floor + 1;
+  if (rest < 0.5) return floor;
+  return floor % 2 === 0 ? floor : floor + 1;
+}
 
 // crunch leaves the tail a quantisation step above zero, so cutting alone
 // clicks: the fade is what lands it on silence.
