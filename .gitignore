@@ -1,0 +1,10 @@
+# Private roadmap, never committed.
+PLAN.md
+
+node_modules/
+dist/
+
+__pycache__/
+.venv/
+
+.DS_Store
