@@ -15,6 +15,8 @@ const crunchBox = el<HTMLInputElement>("crunch");
 const scope = attachScope(el<HTMLCanvasElement>("scope"));
 const echo = el("echo");
 
+const CANONICAL = "https://blip8.sindriax.dev";
+
 const shared = fromHash(window.location.hash);
 let current: Params = shared ?? randomize("blip");
 let last: Float32Array | null = null;
@@ -72,21 +74,45 @@ el("download").addEventListener("click", () => {
   URL.revokeObjectURL(url);
 });
 
-copyButton("copy-link", () => window.location.href);
+copyButton("copy-link", shareUrl);
+
+// Embedded on itch, location.href is the CDN frame the tool happens to be
+// served from, which is not a link anybody should be handed.
+function shareUrl(): string {
+  return window.self === window.top ? window.location.href : `${CANONICAL}/${window.location.hash}`;
+}
 copyButton("copy-recipe", () => toPython(current));
 
 function copyButton(id: string, text: () => string): void {
   const button = el(id);
   const label = button.textContent ?? "";
   button.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(text());
-      button.textContent = "copied";
-    } catch {
-      button.textContent = "copy failed";
-    }
+    button.textContent = (await copy(text())) ? "copied" : "copy failed";
     window.setTimeout(() => (button.textContent = label), 1200);
   });
+}
+
+async function copy(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return selectAndCopy(text);
+  }
+}
+
+// The clipboard API needs a permission an itch iframe is not granted, and the
+// deprecated path still works there.
+function selectAndCopy(text: string): boolean {
+  const area = document.createElement("textarea");
+  area.value = text;
+  area.readOnly = true;
+  area.style.cssText = "position:fixed;top:0;opacity:0";
+  document.body.append(area);
+  area.select();
+  const copied = document.execCommand("copy");
+  area.remove();
+  return copied;
 }
 
 document.addEventListener("keydown", (event) => {
