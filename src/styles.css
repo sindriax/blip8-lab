@@ -19,7 +19,7 @@
 
 body {
   margin: 0;
-  padding: 1.5rem 1rem 3rem;
+  padding: 1.5rem 1rem 1.75rem;
   min-height: 100vh;
   background: var(--void);
   color: var(--glow);
@@ -275,4 +275,46 @@ kbd {
   padding: 0.05rem 0.3rem;
   font-family: var(--mono);
   color: var(--glow);
+}
+
+/* itch serves the tool in a fixed iframe, and laptops are short: compact the
+   chrome so the default view needs no scrolling. */
+@media (max-height: 820px) {
+  body {
+    padding: 0.9rem 0.9rem 1.1rem;
+  }
+  header {
+    margin-bottom: 0.7rem;
+  }
+  #echo {
+    width: 6rem;
+  }
+  h1 img {
+    width: 11rem;
+  }
+  #scope {
+    height: 6.5rem;
+  }
+  #pads {
+    gap: 0.5rem;
+    margin: 0.8rem 0;
+  }
+  .pad {
+    padding: 0.8rem 0.5rem;
+    font-size: 1rem;
+  }
+  .row {
+    gap: 0.5rem;
+  }
+  .row button,
+  .toggle {
+    padding: 0.6rem 0.9rem;
+  }
+  details {
+    margin-top: 0.6rem;
+  }
+  footer {
+    margin-top: 0.9rem;
+    line-height: 1.6;
+  }
 }
