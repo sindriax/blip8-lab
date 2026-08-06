@@ -3,6 +3,7 @@ PLAN.md
 
 node_modules/
 dist/
+blip8-lab-itch.zip
 
 __pycache__/
 .venv/

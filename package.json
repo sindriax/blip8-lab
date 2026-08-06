@@ -27,6 +27,7 @@
     "dev": "vite",
     "build": "npm run typecheck && vite build",
     "preview": "vite preview",
+    "package": "npm run build && cd dist && zip -qr ../blip8-lab-itch.zip . && cd .. && echo 'blip8-lab-itch.zip ready for itch (viewport 800x700)'",
     "typecheck": "tsc",
     "test": "vitest run",
     "test:watch": "vitest",
