@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>blip8 lab: 8-bit sound maker</title>
+    <meta
+      name="description"
+      content="Make chiptune sound effects in your browser: coins, jumps, lasers. Randomize, tweak, download the .wav. Free."
+    />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+  </head>
+  <body>
+    <main class="rig">
+      <header>
+        <img id="echo" src="/echo.png" alt="Echo, the blip8 bat, in a lab coat holding a beaker" />
+        <div>
+          <h1><img src="/wordmark.png" alt="blip8 lab" /></h1>
+          <p class="sub">Echo makes you a sound effect. Mash a pad.</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <canvas id="scope"></canvas>
+        <p id="readout"></p>
+      </section>
+
+      <div id="pads"></div>
+
+      <div class="row">
+        <button id="mutate">more like this</button>
+        <button id="replay">replay</button>
+        <label class="toggle"><input type="checkbox" id="crunch" /> 4-bit crunch</label>
+      </div>
+
+      <div class="row" style="margin-top: 0.7rem">
+        <button id="download">download .wav</button>
+      </div>
+
+      <details id="advanced">
+        <summary>advanced</summary>
+        <div id="knobs"></div>
+      </details>
+
+      <details id="recipe-fold">
+        <summary>recipe</summary>
+        <div class="recipe-body">
+          <p class="note">
+            Every sound here is arithmetic, not a sample. This is the exact call that made the one
+            you are listening to.
+          </p>
+          <pre><code id="recipe"></code></pre>
+          <div class="row">
+            <button id="copy-recipe">copy recipe</button>
+            <button id="copy-link">copy link to this sound</button>
+          </div>
+          <p class="note">
+            <a href="https://pypi.org/project/blip8/">pip install blip8</a> to run it, change a
+            number, render your own.
+          </p>
+        </div>
+      </details>
+
+      <footer>
+        <kbd>1</kbd>..<kbd>7</kbd> mash a pad, <kbd>m</kbd> mutate, <kbd>space</kbd> replay.<br />
+        In a hurry? Grab the pack:
+        <a href="https://sindriax.itch.io/blip8-sounds">blip8 sounds</a>. Want it in Python?
+        <a href="https://github.com/sindriax/blip8">pip install blip8</a>.
+      </footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

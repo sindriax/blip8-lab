@@ -1,0 +1,278 @@
+/* --void must equal the sprite background scripts/sprites.py reports,
+   or the crops show as rectangles. */
+:root {
+  --void: #071904;
+  --panel: #0d2a08;
+  --panel-hi: #143b0c;
+  --outline: #041002;
+  --moss: #93ba39;
+  --moss-lo: #5e7f22;
+  --glow: #d2e360;
+  --cream: #fdff8c;
+  --line: #3d6b1f;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem 1rem 3rem;
+  min-height: 100vh;
+  background: var(--void);
+  color: var(--glow);
+  font-family: var(--mono);
+  display: flex;
+  justify-content: center;
+}
+
+.rig {
+  width: 100%;
+  max-width: 44rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+#echo {
+  width: 8.5rem;
+  image-rendering: pixelated;
+  transform-origin: 50% 90%;
+}
+#echo.perk {
+  animation: perk 420ms steps(4, end);
+}
+@keyframes perk {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+  60% {
+    transform: translateY(-2px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+h1 {
+  margin: 0;
+}
+h1 img {
+  width: 15rem;
+  max-width: 100%;
+  image-rendering: pixelated;
+}
+.sub {
+  margin: 0.2rem 0 0;
+  color: var(--moss);
+  font-size: 0.82rem;
+}
+
+.panel {
+  background: var(--panel);
+  border: 3px solid var(--outline);
+  border-radius: 14px;
+  padding: 0.6rem;
+}
+
+#scope {
+  display: block;
+  width: 100%;
+  height: 9rem;
+  border-radius: 8px;
+}
+#readout {
+  margin: 0.5rem 0 0.2rem;
+  padding: 0 0.3rem;
+  font-size: 0.76rem;
+  color: var(--moss);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#pads {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.7rem;
+  margin: 1.2rem 0;
+}
+
+/* Squishy pixel-art button: a hard shadow that collapses when pressed. */
+button {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--outline);
+  background: var(--moss);
+  border: 3px solid var(--outline);
+  border-radius: 12px;
+  box-shadow: 0 5px 0 var(--moss-lo);
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition:
+    transform 60ms,
+    box-shadow 60ms;
+}
+button:hover {
+  background: var(--glow);
+}
+button:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--moss-lo);
+}
+
+.pad {
+  padding: 1.15rem 0.5rem;
+  font-size: 1.1rem;
+  text-transform: lowercase;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: stretch;
+}
+.row button {
+  padding: 0.75rem 1.1rem;
+  font-size: 0.9rem;
+}
+#download {
+  flex: 1;
+  min-width: 12rem;
+  background: var(--cream);
+}
+#download:hover {
+  background: #fff;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.75rem 1.1rem;
+  background: var(--panel-hi);
+  border: 3px solid var(--outline);
+  border-radius: 12px;
+  color: var(--moss);
+  font-size: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+}
+.toggle:has(:checked) {
+  color: var(--cream);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--moss);
+  width: 1rem;
+  height: 1rem;
+}
+input[type="range"],
+select {
+  accent-color: var(--moss);
+}
+
+details {
+  margin-top: 1rem;
+  background: var(--panel);
+  border: 3px solid var(--outline);
+  border-radius: 14px;
+}
+summary {
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--moss);
+  border-radius: 12px;
+}
+summary:hover {
+  color: var(--glow);
+}
+#knobs {
+  padding: 0.2rem 1rem 1rem;
+  display: grid;
+  gap: 0.4rem;
+}
+.knob {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr 5.5rem;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+}
+.knob-name {
+  color: var(--moss);
+}
+.knob-value {
+  text-align: right;
+  color: var(--line);
+}
+.knob-note {
+  font-style: italic;
+}
+.knob.unused {
+  opacity: 0.35;
+}
+.knob input,
+.knob select {
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+.knob input[type="number"],
+.knob select {
+  background: var(--panel-hi);
+  color: var(--glow);
+  border: 2px solid var(--outline);
+  border-radius: 7px;
+  padding: 0.3rem 0.45rem;
+}
+
+.recipe-body {
+  padding: 0.2rem 1rem 1rem;
+}
+.note {
+  font-size: 0.78rem;
+  color: var(--moss);
+  margin: 0.4rem 0 0.7rem;
+  line-height: 1.6;
+}
+.note a,
+footer a {
+  color: var(--cream);
+}
+pre {
+  margin: 0 0 0.8rem;
+  padding: 0.8rem;
+  background: var(--void);
+  border: 2px solid var(--outline);
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: var(--glow);
+}
+
+footer {
+  margin-top: 1.5rem;
+  font-size: 0.76rem;
+  color: var(--moss);
+  line-height: 1.8;
+}
+kbd {
+  background: var(--panel-hi);
+  border: 2px solid var(--outline);
+  border-radius: 5px;
+  padding: 0.05rem 0.3rem;
+  font-family: var(--mono);
+  color: var(--glow);
+}
