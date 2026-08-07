@@ -15,7 +15,7 @@ const crunchBox = el<HTMLInputElement>("crunch");
 const scope = attachScope(el<HTMLCanvasElement>("scope"));
 const echo = el("echo");
 
-const CANONICAL = "https://blip8.sindriax.dev";
+const CANONICAL = "https://blip8.sindriax.dev/lab/";
 
 const shared = fromHash(window.location.hash);
 let current: Params = shared ?? randomize("blip");
@@ -79,7 +79,7 @@ copyButton("copy-link", shareUrl);
 // Embedded on itch, location.href is the CDN frame the tool happens to be
 // served from, which is not a link anybody should be handed.
 function shareUrl(): string {
-  return window.self === window.top ? window.location.href : `${CANONICAL}/${window.location.hash}`;
+  return window.self === window.top ? window.location.href : `${CANONICAL}${window.location.hash}`;
 }
 copyButton("copy-recipe", () => toPython(current));
 
