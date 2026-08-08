@@ -121,9 +121,14 @@ covers are Echo art (originals live in
 The in-app sprites and the favicon are generated:
 
 ```sh
-uv run scripts/sprites.py    # Echo and the wordmark, cut from the brand original
-uv run scripts/covers.py     # waveform alternates and social previews, plotted from real samples
+uv run ../blip8-sounds/brand/sprites.py lab --out public   # Echo and the wordmark
+uv run scripts/covers.py                                   # waveform alternates, favicon
 ```
+
+The sprite cropping lives with the art it crops, in
+[blip8-sounds/brand](https://github.com/sindriax/blip8-sounds/tree/main/brand),
+so the hub and the lab share one implementation. The output is committed, so a
+build never needs that repo checked out.
 
 ## the blip8 family
 
