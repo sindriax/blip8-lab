@@ -10,6 +10,18 @@ The browser half of [blip8](https://github.com/sindriax/blip8), which is the
 Python library underneath, and [blip8 sounds](https://sindriax.itch.io/blip8-sounds),
 which is the ready made pack for people in a hurry.
 
+It exists because every game I built started by rewriting the same throwaway
+sound script ([the longer version](https://github.com/sindriax/blip8#why-i-made-this)).
+This is that library ported to WebAudio, and the port is not taken on trust:
+`npm test` runs every recipe the tool prints through the real blip8 and diffs
+the samples.
+
+## the blip8 family
+
+- 🦇 [blip8](https://github.com/sindriax/blip8): the Python chiptune synthesis library. `pip install blip8`
+- 🧪 [blip8 lab](https://sindriax.itch.io/blip8-lab): make 8-bit sounds in your browser ([source](https://github.com/sindriax/blip8-lab))
+- 📦 [blip8 sounds](https://sindriax.itch.io/blip8-sounds): free CC0 chiptune SFX packs, generated from code ([source](https://github.com/sindriax/blip8-sounds))
+
 ## Run it
 
 ```sh
@@ -129,12 +141,6 @@ The sprite cropping lives with the art it crops, in
 [blip8-sounds/brand](https://github.com/sindriax/blip8-sounds/tree/main/brand),
 so the hub and the lab share one implementation. The output is committed, so a
 build never needs that repo checked out.
-
-## the blip8 family
-
-- 🦇 [blip8](https://github.com/sindriax/blip8): the Python chiptune synthesis library. `pip install blip8`
-- 🧪 [blip8 lab](https://sindriax.itch.io/blip8-lab): make 8-bit sounds in your browser ([source](https://github.com/sindriax/blip8-lab))
-- 📦 [blip8 sounds](https://sindriax.itch.io/blip8-sounds): free CC0 chiptune SFX packs, generated from code ([source](https://github.com/sindriax/blip8-sounds))
 
 ## License
 
