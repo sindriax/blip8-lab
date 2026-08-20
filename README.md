@@ -16,7 +16,7 @@ This is that library ported to WebAudio, and the port is not taken on trust:
 `npm test` runs every recipe the tool prints through the real blip8 and diffs
 the samples.
 
-## the blip8 family
+## the blip8 shelf
 
 - 🏠 [blip8.sindriax.dev](https://blip8.sindriax.dev): the front door, all three in one place
 - 🦇 [blip8](https://github.com/sindriax/blip8): the Python chiptune synthesis library. `pip install blip8`
@@ -96,53 +96,6 @@ from numpy's PCG64 and the lab from mulberry32, so the same seed gives the same
 kind of noise, not the identical noise. The fidelity test skips noise for that
 reason, and skips itself entirely if [uv](https://docs.astral.sh/uv/) is not
 installed.
-
-## Layout
-
-```
-index.html            structure only
-src/sfx.ts            the engine: Params, randomize, mutate, render
-src/synth.ts          the port of blip8's oscillators
-src/scope.ts          the oscilloscope canvas
-src/controls.ts       the advanced fold, generated from the limits table
-src/link.ts           params in and out of the URL hash
-src/recipe.ts         the current sound as a blip8 call
-src/dom.ts            element lookup that fails loudly on a missing id
-src/main.ts           wiring
-src/styles.css        the look, and the void colour the sprites are cut against
-scripts/covers.py     cover art, plotted from real blip8 samples
-scripts/verify_recipes.py   the Python half of the fidelity test
-```
-
-## Development
-
-```sh
-npm run dev          # vite dev server
-npm test             # vitest, including the port fidelity check
-npm run typecheck    # tsc, no emit
-npm run build        # typecheck then build to dist/
-npm run format       # prettier
-```
-
-`dist/` is 84 KB of static files, images included. The same build uploads to
-itch.io as an HTML5 tool and deploys to a static host.
-
-## Art
-
-Echo, the bat, is the label's mascot: bats emit blips for a living. The itch
-covers are Echo art (originals live in
-[blip8-sounds/brand](https://github.com/sindriax/blip8-sounds/tree/main/brand)).
-The in-app sprites and the favicon are generated:
-
-```sh
-uv run ../blip8-sounds/brand/sprites.py lab --out public   # Echo and the wordmark
-uv run scripts/covers.py                                   # waveform alternates, favicon
-```
-
-The sprite cropping lives with the art it crops, in
-[blip8-sounds/brand](https://github.com/sindriax/blip8-sounds/tree/main/brand),
-so the hub and the lab share one implementation. The output is committed, so a
-build never needs that repo checked out.
 
 ## License
 
