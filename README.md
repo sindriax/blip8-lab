@@ -18,6 +18,7 @@ the samples.
 
 ## the blip8 family
 
+- 🏠 [blip8.sindriax.dev](https://blip8.sindriax.dev): the front door, all three in one place
 - 🦇 [blip8](https://github.com/sindriax/blip8): the Python chiptune synthesis library. `pip install blip8`
 - 🧪 [blip8 lab](https://sindriax.itch.io/blip8-lab): make 8-bit sounds in your browser ([source](https://github.com/sindriax/blip8-lab))
 - 📦 [blip8 sounds](https://sindriax.itch.io/blip8-sounds): free CC0 chiptune SFX packs, generated from code ([source](https://github.com/sindriax/blip8-sounds))
@@ -106,9 +107,10 @@ src/scope.ts          the oscilloscope canvas
 src/controls.ts       the advanced fold, generated from the limits table
 src/link.ts           params in and out of the URL hash
 src/recipe.ts         the current sound as a blip8 call
+src/dom.ts            element lookup that fails loudly on a missing id
 src/main.ts           wiring
+src/styles.css        the look, and the void colour the sprites are cut against
 scripts/covers.py     cover art, plotted from real blip8 samples
-scripts/sprites.py    Echo and the wordmark, cut from the brand original
 scripts/verify_recipes.py   the Python half of the fidelity test
 ```
 

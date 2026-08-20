@@ -1,4 +1,4 @@
-/* --void must equal the sprite background scripts/sprites.py reports,
+/* --void must equal the sprite background ../blip8-sounds/brand/sprites.py reports,
    or the crops show as rectangles. */
 :root {
   --void: #071904;
